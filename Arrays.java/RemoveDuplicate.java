@@ -1,4 +1,4 @@
-class Solution {
+class RemoveDuplicateArraySolution {
     public int removeDuplicates(int[] nums) {
         int left =0;
         for(int i=1 ; i<nums.length ; i++){
