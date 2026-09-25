@@ -1,4 +1,4 @@
-class Solution {
+public class MissingNumber {
     public int missingNumber(int[] nums) {
         int n = nums.length;
         int[]count = new int[n+1];
