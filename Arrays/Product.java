@@ -1,6 +1,10 @@
 public class Product {
     public static int maxProduct(int[] nums) {
-       int mp = nums[0];
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        int mp = nums[0];
         int cMin = nums[0];
         int cMax = nums[0];
 
