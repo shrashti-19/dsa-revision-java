@@ -1,16 +1,16 @@
-public class TwoSum{
-        public int[] twoSum(int[] nums, int target) {
-        int n = nums.length;
-        int[] result = new int[2];
+import java.util.*;
 
+public class TwoSum{
+public int[] twoSum(int[] nums, int target) {
+        int n = nums.length;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        
         for(int i=0 ; i<n ; i++){
-            for(int j=i+1 ; j<n ; j++){
-                int sum = nums[i] + nums[j];
-                if(sum == target){
-                    result[0] = i;
-                    result[1] = j;
-                    return result;
-                }
+            int need = target - nums[i];
+            if(map.containsKey(need)){
+                return new int[]{map.get(need),i};
+            }else{
+                map.put(nums[i],i);
             }
         }
         return new int[]{-1,-1};
