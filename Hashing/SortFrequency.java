@@ -1,36 +1,41 @@
+import java.util.*;
+
 public class SortFrequency{
-    public List<Character> frequencySort(String s) {
-        // Your code goes here
-        List<Character> result = new ArrayList<>();
+    public String frequencySort(String s) {
+        //lowercase + uppercase + duplicates allowed
+        StringBuilder result = new StringBuilder();
 
-        int[] count = new int[26];
+        HashMap<Character,Integer> map = new HashMap<>();
         int n = s.length();
-
         for(int i=0 ; i<n ; i++){
-            count[s.charAt(i)-'a']++;
-        }
-
-        while(n!=0){
-            int maxFrequency = 0;
-            int maxIndex = -1;
-
-            for(int i=0 ; i<26 ; i++){
-                if(count[i]>maxFrequency){
-                    maxFrequency = count[i];
-                    maxIndex = i;
-                }
+            char c = s.charAt(i);
+            if(map.containsKey(c)){
+                map.put(c, map.getOrDefault(c,0)+1);
+            }else{
+                map.put(c,1);
             }
-            
-            //only one e required like no repeat - unique
-            char c = (char)(maxIndex + 'a');
-            result.add(c);
-
-            count[maxIndex]=0;
-            n-=maxFrequency;
-
         }
-        return result;
+        while(!map.isEmpty()){
+              int maxFrequency = 0;
+              char maxCharacter ='\0';
 
-    }
+              for(Map.Entry<Character, Integer> entry : map.entrySet()){
+                char c = entry.getKey();
+                int freq = entry.getValue();
+
+                if(freq> maxFrequency){
+                  maxFrequency = freq;
+                  maxCharacter = c;
+                }
+              }
+                for(int i=0 ; i<maxFrequency ; i++){
+                    result.append(maxCharacter);
+                }
+
+              map.remove(maxCharacter);
+            }
+            return result.toString();
+        }
+        
 
 }
