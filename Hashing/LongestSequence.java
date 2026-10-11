@@ -2,7 +2,9 @@ import java.util.HashSet;
 
 public class LongestSequence{
     public static int sequence(int nums[]){
-        if(nums.length ==0);
+        if (nums.length == 0) {
+            return 0;
+        }
         HashSet<Integer> set = new HashSet<>();
 
         for(int num : nums){
