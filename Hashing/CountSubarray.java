@@ -1,16 +1,21 @@
+import java.util.*;
 public class CountSubarray {
     public int subarraySum(int[] nums, int k) {
         int n = nums.length;
-        int count= 0;
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        int currentPrefix = 0;
+        int count =0;
+        map.put(0,1);
 
         for(int i=0 ; i<n ; i++){
-            int sum=0;
-            for(int j=i ; j<n ; j++){
-                sum+=nums[j];
-                if(sum == k){
-                   count++;
-                }
+            currentPrefix+=nums[i];
+            int need = currentPrefix-k;
+            if(map.containsKey(need)){
+                count+=map.get(need);
             }
+
+            map.put(currentPrefix, map.getOrDefault(currentPrefix,0)+1);
         }
         return count;
     }
