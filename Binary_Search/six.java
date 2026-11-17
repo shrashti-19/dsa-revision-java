@@ -1,18 +1,20 @@
-import java.util.HashMap;
-import java.util.Map;
 
 public class six {
-    public int singleNonDuplicate(int[] nums) {
-      HashMap<Integer, Integer> map = new HashMap<>();
-      for(int i=0 ; i<nums.length ; i++){
-        map.put(nums[i], map.getOrDefault(nums[i],0)+1);
-      }
-      //int count = 0;
-      for(Map.Entry<Integer,Integer> entry : map.entrySet()){
-        if(entry.getValue()==1){
-            return entry.getKey();
+public int singleNonDuplicate(int[] nums) {
+      int low = 0;
+      int n = nums.length;
+      int high = n-1;
+
+      while(low<high){
+        int mid = low +(high-low)/2;
+
+        if(nums[mid]==nums[mid^1]){
+            //pairing match
+            low = mid+1;
+        }else{
+            high = mid;
         }
       }
-      return -1;
+      return nums[low];
     }
 }
