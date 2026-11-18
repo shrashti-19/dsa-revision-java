@@ -1,5 +1,5 @@
 public class seven {
-    public int findPeakElement(int[] arr) {
+public int findPeakElement(int[] arr) {
         int n = arr.length;
         int low = 0;
         int high = n-1;
